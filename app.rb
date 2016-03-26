@@ -122,3 +122,7 @@ file 'app/assets/stylesheets/application.scss', <<-CODE
 @import "bootstrap-sprockets";
 @import "bootstrap";
 CODE
+
+# javascripts
+insert_into_file 'app/assets/javascripts/application.js', "\n//= require bootstrap-sprockets" ,
+  after: /require jquery_ujs/
