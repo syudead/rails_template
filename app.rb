@@ -103,7 +103,6 @@ after_bundle do
   generate "haml:application_layout"
   remove_file "app/views/layouts/application.html.erb"
 
-  # i18n
   remove_file 'config/locales/en.yml'
 
   # git
@@ -115,4 +114,11 @@ end
 file 'Procfile', <<-CODE
 web: bundle exec rails s -b 0.0.0.0
 sidekiq: bundle exec sidekiq
+CODE
+
+# styleseets for bootstrap
+remove_file 'app/assets/stylesheets/application.css'
+file 'app/assets/stylesheets/application.scss', <<-CODE
+@import "bootstrap-sprockets";
+@import "bootstrap";
 CODE
