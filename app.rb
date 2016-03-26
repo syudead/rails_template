@@ -66,6 +66,10 @@ gem 'sidekiq', '4.1.1'
 # Admin
 gem 'activeadmin', '~> 1.0.0.pre2'
 
+# I18n
+gem 'devise-i18n', '1.0.0'
+gem 'rails-i18n', '4.0.8'
+
 ### End of gems
 
 # config/application.rb
@@ -93,6 +97,7 @@ CODE
 
 after_bundle do
   generate "devise:install"
+  generate "devise:views:i18n_templates"
   generate "rspec:install"
   generate "simple_form:install --bootstrap"
   generate "haml:application_layout"
@@ -102,7 +107,11 @@ after_bundle do
   remove_file 'config/locales/en.yml'
   run 'curl https://raw.githubusercontent.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml >> config/locales/ja.yml'
   run 'curl https://raw.githubusercontent.com/svenfuchs/rails-i18n/master/rails/locale/en.yml >> config/locales/en.yml'
-  run 'curl https://raw.githubusercontent.com/tigrish/devise-i18n/master/rails/locales/ja.yml >> config/locales/devise.ja.yml'
+
+  # git
+  git :init
+  git add: '.'
+  git commit: "-a -m 'Initial commit'"
 end
 
 file 'Procfile', <<-CODE
