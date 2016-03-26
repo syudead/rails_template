@@ -105,8 +105,6 @@ after_bundle do
 
   # i18n
   remove_file 'config/locales/en.yml'
-  run 'curl https://raw.githubusercontent.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml >> config/locales/ja.yml'
-  run 'curl https://raw.githubusercontent.com/svenfuchs/rails-i18n/master/rails/locale/en.yml >> config/locales/en.yml'
 
   # git
   git :init
